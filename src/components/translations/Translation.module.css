@@ -1,0 +1,48 @@
+.inputs {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 10px;
+	height: 200px;
+	overflow: scroll;
+	width: 500px;
+}
+.inputs input {
+	width: 200px;
+}
+.inputs p {
+	color: #1677ff;
+	text-transform: uppercase;
+}
+.uzb {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 20px;
+	padding: 20px 0 0;
+}
+.uzb p {
+	padding: 0 0 0 80px;
+}
+.eng {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	padding: 20px 0 0;
+}
+.eng p {
+	padding: 0 0 0 0;
+}
+.hidden {
+	display: none;
+}
+.remove {
+	margin-left: 20px;
+	color: #1677ff;
+}
+.add_btn {
+	margin: 0 0 0 10px;
+}

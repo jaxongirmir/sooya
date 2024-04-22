@@ -1,0 +1,11 @@
+.media form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+.media h3 {
+	width: 100%;
+	text-align: center;
+}

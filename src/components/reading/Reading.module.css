@@ -1,0 +1,11 @@
+.reading_form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 20px;
+}
+.reading_form h3 {
+	width: 100%;
+	text-align: center;
+}

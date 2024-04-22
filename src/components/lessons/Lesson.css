@@ -1,0 +1,19 @@
+.btns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+.btns button {
+	background-color: transparent;
+	border-radius: 5px;
+	transition: 0.3s ease-in-out;
+	border: 2px solid aqua;
+	color: aqua;
+	padding: 0 5px;
+	font-size: 12px;
+}
+.btns button:hover {
+	color: #eee;
+	background-color: aqua;
+}

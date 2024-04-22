@@ -1,0 +1,36 @@
+.questions {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 15px;
+}
+.questions textarea {
+	min-height: 50px;
+	resize: none;
+	border-color: dodgerblue;
+	color: dodgerblue;
+}
+.questions textarea::placeholder {
+	color: dodgerblue;
+}
+.questions input {
+	color: crimson;
+	border-color: crimson;
+}
+
+.questions input::placeholder {
+	color: crimson;
+}
+.questions input:nth-child(3) {
+	color: green;
+	border-color: green;
+}
+
+.questions input:nth-child(3)::placeholder {
+	color: green;
+}
+.questions button {
+	border: 1px solid dodgerblue;
+	color: dodgerblue;
+}
