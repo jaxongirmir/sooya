@@ -1,32 +1,40 @@
 import { Steps as AntSteps, Button } from 'antd'
-import React, { useState } from 'react'
-import Media from '../media/Media'
-import Question from '../question/Question'
-import Reading from '../reading/Reading'
-import Translations from '../translations/Translation'
+import { useEffect, useState } from 'react'
+import Media from '../../pages/media/Media'
+import Question from '../../pages/question/Question'
+import Reading from '../../pages/reading/Reading'
+import Translations from '../../pages/translations/Translation'
 
 const CustomSteps = ({ id, setModalOpen, reading }) => {
 	const [current, setCurrent] = useState(0)
-	console.log(reading)
-
-	const steps = [
-		{
-			title: reading ? 'Reading' : 'Media',
-			content: reading ? (
-				<Reading id={id} />
-			) : (
-				<Media id={id} setCurrent={setCurrent} />
-			),
-		},
-		{
-			title: 'Translation',
-			content: <Translations setCurrent={setCurrent} />,
-		},
-		{
-			title: 'Question',
-			content: <Question setModalOpen={setModalOpen} setCurrent={setCurrent} />,
-		},
-	]
+	useEffect(() => {
+		if (reading) {
+			setCurrent(0)
+		}
+	}, [reading])
+	const steps = !reading
+		? [
+				{
+					title: 'Media',
+					content: <Media id={id} setCurrent={setCurrent} />,
+				},
+				{
+					title: 'Translation',
+					content: <Translations setCurrent={setCurrent} />,
+				},
+				{
+					title: 'Question',
+					content: (
+						<Question setModalOpen={setModalOpen} setCurrent={setCurrent} />
+					),
+				},
+		  ]
+		: [
+				{
+					title: 'Reading',
+					content: <Reading id={id} setModalOpen={setModalOpen} />,
+				},
+		  ]
 
 	const next = () => {
 		setCurrent(current + 1)
@@ -44,18 +52,18 @@ const CustomSteps = ({ id, setModalOpen, reading }) => {
 	const contentStyle = {
 		padding: '30px 0 ',
 	}
-
+	const currentContent = steps[current] ? steps[current].content : null
 	return (
 		<>
-			<AntSteps current={current} items={items} style={{ width: '50%' }} />{' '}
-			<div style={contentStyle}>{steps[current].content}</div>
+			<AntSteps current={current} items={items} style={{ width: '50%' }} />
+			<div style={contentStyle}>{steps[current]?.content}</div>
 			<div style={{ width: '50%' }}>
 				{current < steps.length - 1 && (
 					<Button type='primary' onClick={next}>
 						Next
 					</Button>
 				)}
-				{current === steps.length - 1 && (
+				{!reading && current === steps.length - 1 && (
 					<Button
 						type='primary'
 						onClick={() => {

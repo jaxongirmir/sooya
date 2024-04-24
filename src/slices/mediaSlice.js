@@ -4,14 +4,14 @@ import MAIN_URL from '../url/Urls'
 
 export const fetchMedias = createAsyncThunk(
 	'medias/fetchMedias',
-	async ({ id, mediaId }, { rejectWithValue }) => {
+	async ({ id }, { rejectWithValue }) => {
 		try {
 			const token = localStorage.getItem('token')
 			if (!token) {
 				throw new Error('Token not found')
 			}
 			const response = await axios.get(
-				`${MAIN_URL}/lessons/${id}/media_items/${mediaId}`,
+				`${MAIN_URL}/lessons/${id}/media_items`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -25,6 +25,28 @@ export const fetchMedias = createAsyncThunk(
 	}
 )
 
+// export const fetchMedia = createAsyncThunk(
+// 	'media/fetchMedia',
+// 	async ({ id, mediaId }, { rejectWithValue }) => {
+// 		try {
+// 			const token = localStorage.getItem('token')
+// 			if (!token) {
+// 				throw new Error('Token not found')
+// 			}
+// 			const response = await axios.get(
+// 				`${MAIN_URL}/lessons/${id}/media_items/${mediaId}`,
+// 				{
+// 					headers: {
+// 						Authorization: `Bearer ${token}`,
+// 					},
+// 				}
+// 			)
+// 			return response.data
+// 		} catch (error) {
+// 			return rejectWithValue(error.response.data.message)
+// 		}
+// 	}
+// )
 export const addMedia = createAsyncThunk(
 	'media/addMedia',
 	async ({ id, formData }, { rejectWithValue }) => {
@@ -76,6 +98,18 @@ const mediaSlice = createSlice({
 				state.loading = false
 				state.error = action.payload
 			})
+			// .addCase(fetchMedia.pending, state => {
+			// 	state.loading = true
+			// 	state.error = null
+			// })
+			// .addCase(fetchMedia.fulfilled, (state, action) => {
+			// 	state.loading = false
+			// 	state.medias = action.payload
+			// })
+			// .addCase(fetchMedia.rejected, (state, action) => {
+			// 	state.loading = false
+			// 	state.error = action.payload
+			// })
 			.addCase(addMedia.pending, state => {
 				state.loading = true
 				state.error = null

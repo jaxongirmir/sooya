@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import CreateUser from './components/createUser/CreateUser'
-import Lessons from './components/lessons/Lessons'
-import Login from './components/login/Login'
-import Reading from './components/reading/Reading'
+import CreateUser from './pages/createUser/CreateUser'
+import Lessons from './pages/lessons/Lessons'
+import Login from './pages/login/Login'
+import Reading from './pages/reading/Reading'
 
 const App = () => {
 	const [isAuth, setIsAuth] = useState(false)

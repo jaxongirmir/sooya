@@ -11,7 +11,7 @@ export const fetchTranslations = createAsyncThunk(
 				throw new Error('Token not found')
 			}
 			const response = await axios.get(
-				`${MAIN_URL}/lessons/${id}/media_items/${mediaId}`,
+				`${MAIN_URL}/lessons/${id}/media_items/${mediaId}/translations`,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,

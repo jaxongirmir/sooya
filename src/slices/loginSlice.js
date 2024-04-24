@@ -8,6 +8,7 @@ export const loginUser = createAsyncThunk(
 		try {
 			const response = await axios.post(`${MAIN_URL}/login`, credentials)
 			localStorage.setItem('token', response.data.token)
+			window.location.href = '/createUser'
 			return response.data.token
 		} catch (error) {
 			return rejectWithValue(error.response.data.message)

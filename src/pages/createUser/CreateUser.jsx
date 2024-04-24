@@ -1,17 +1,16 @@
-import { Button, Form, Input, Tabs } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Form, Input, Tabs, notification } from 'antd'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Layout from '../../components/layout/Layout'
 import { addUser, fetchUsers } from '../../slices/userSlice'
-import Error from '../error/Error'
-import Layout from '../layout/Layout'
-import Loading from '../loading/Loading'
 import User from '../users/User'
 import './CreateUser.css'
 
 function CreateUser() {
 	const dispatch = useDispatch()
+	const formRef = useRef(null)
 	const loading = useSelector(state => state.user.loading)
-	const error = useSelector(state => state.user.error)
+
 	useEffect(() => {
 		dispatch(fetchUsers())
 	}, [dispatch])
@@ -21,23 +20,40 @@ function CreateUser() {
 			user: values,
 		}
 		dispatch(addUser(body))
+			.then(() => {
+				notification.success({
+					message: 'User Created',
+					description: 'The user has been successfully created.',
+				})
+				formRef.current.resetFields()
+				formRef.current.setFieldsValue({
+					email: '',
+					password: '',
+				})
+			})
+			.catch(error => {
+				notification.error({
+					message: 'Error',
+					description: 'There was an error while creating the user.',
+				})
+			})
 	}
-	if (error) {
-		return <Error error={error} />
-	}
-	if (loading) {
-		return <Loading />
-	}
+
 	return (
 		<Layout>
 			<Tabs>
-				<Tabs.TabPane defaultActiveKey='0' tab='Studens' key={0}>
+				<Tabs.TabPane defaultActiveKey='0' tab='Students' key={0}>
 					<User />
 				</Tabs.TabPane>
 
 				<Tabs.TabPane defaultActiveKey='1' tab='Create' key={1}>
 					<div className='createUser'>
-						<Form onFinish={onFinish} layout='vertical' autoComplete='off'>
+						<Form
+							ref={formRef}
+							onFinish={onFinish}
+							layout='vertical'
+							autoComplete='off'
+						>
 							<h3 style={{ textAlign: 'center', marginBottom: '30px' }}>
 								Create student
 							</h3>
@@ -111,7 +127,7 @@ function CreateUser() {
 									span: 16,
 								}}
 							>
-								<Button type='primary' htmlType='submit'>
+								<Button type='primary' htmlType='submit' loading={loading}>
 									Submit
 								</Button>
 							</Form.Item>

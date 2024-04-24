@@ -75,7 +75,7 @@ function User() {
 				setUsers(res.data)
 			})
 			.catch(err => console.log(err))
-	}, [])
+	}, [users])
 
 	const handleDelete = userId => {
 		dispatch(deleteUser(userId))
@@ -144,8 +144,6 @@ function User() {
 						>
 							<DeleteOutlined style={{ color: 'crimson' }} />
 						</Popconfirm>
-
-						{/* edit confirm */}
 						<EditOutlined
 							onClick={() => {
 								setOpen(item.id)

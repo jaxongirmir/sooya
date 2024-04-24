@@ -6,8 +6,6 @@ import { PiLockKeyFill } from 'react-icons/pi'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../slices/loginSlice'
-import Error from '../error/Error'
-import Loading from '../loading/Loading'
 import Avatar from './img/avatar.svg'
 import bg from './img/bg.svg'
 import wave from './img/wave.png'
@@ -20,7 +18,7 @@ const Login = () => {
 	const onFinish = async values => {
 		try {
 			await dispatch(loginUser(values))
-			navigate('/createUser')
+			// navigate('/createUser')
 			form.resetFields()
 		} catch (error) {
 			console.error(error)
@@ -28,14 +26,6 @@ const Login = () => {
 		}
 	}
 	const loading = useSelector(state => state.login.loading)
-	const error = useSelector(state => state.login.error)
-	if (loading) {
-		return <Loading />
-	}
-
-	if (error) {
-		return <Error error={error} />
-	}
 	return (
 		<>
 			<img className='wave' src={wave} />
@@ -91,7 +81,12 @@ const Login = () => {
 						</Form.Item>
 
 						<Form.Item>
-							<Button type='primary' htmlType='submit' className='btnIN'>
+							<Button
+								type='primary'
+								htmlType='submit'
+								className='btnIN'
+								loading={loading}
+							>
 								Login
 							</Button>
 						</Form.Item>

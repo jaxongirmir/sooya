@@ -5,6 +5,7 @@ import login from './slices/loginSlice'
 import mediaId from './slices/mediaId'
 import mediaSlice from './slices/mediaSlice'
 import questionSLice from './slices/questionSLice'
+import readingSlice from './slices/readingSlice'
 import translationId from './slices/translationId'
 import translationSlice from './slices/translationSlice'
 import userSlice from './slices/userSlice'
@@ -20,5 +21,6 @@ export const store = configureStore({
 		mediaId: mediaId,
 		translationId: translationId,
 		question: questionSLice,
+		reading: readingSlice,
 	},
 })

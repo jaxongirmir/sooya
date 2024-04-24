@@ -2,8 +2,6 @@ import { Button, Form, Input } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addLesson } from '../../slices/lessonSlice'
-import Error from '../error/Error'
-import Loading from '../loading/Loading'
 
 function CreateLesson() {
 	const [comleted, setCompleted] = useState(false)
@@ -32,14 +30,6 @@ function CreateLesson() {
 		}
 		console.log(body)
 		dispatch(addLesson(body))
-	}
-
-	if (loading) {
-		return <Loading />
-	}
-
-	if (error) {
-		return <Error error={error} />
 	}
 	return (
 		<div className='createUser'>
@@ -101,7 +91,7 @@ function CreateLesson() {
 						span: 16,
 					}}
 				>
-					<Button type='primary' htmlType='submit'>
+					<Button type='primary' htmlType='submit' loading={loading}>
 						Submit
 					</Button>
 				</Form.Item>
