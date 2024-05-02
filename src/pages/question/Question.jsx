@@ -21,21 +21,21 @@ const Question = ({ setModalOpen, setCurrent }) => {
 	const mediaId = mediaInfo.payload.mediaId.mediaId
 	const translationId = translatioInfo.payload.translationId.translationId
 	const loading = useSelector(state => state.question.loading)
-	if (!translationId) {
-		return (
-			<h2
-				style={{
-					color: 'red',
-					height: '230px',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}
-			>
-				Create the translation first
-			</h2>
-		)
-	}
+	// if (!translationId) {
+	// 	return (
+	// 		<h2
+	// 			style={{
+	// 				color: 'red',
+	// 				height: '230px',
+	// 				display: 'flex',
+	// 				justifyContent: 'center',
+	// 				alignItems: 'center',
+	// 			}}
+	// 		>
+	// 			Create the translation first
+	// 		</h2>
+	// 	)
+	// }
 	const handleClick = async () => {
 		const multiple_question = {
 			content: question,

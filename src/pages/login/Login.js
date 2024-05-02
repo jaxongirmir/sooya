@@ -16,22 +16,22 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinish = async (values) => {
-    try {
-      await dispatch(loginUser(values));
-      // navigate('/createUser')
-      form.resetFields();
-    } catch (error) {
-      console.error(error);
-      message.error("Error");
-    }
+    dispatch(loginUser(values)).then((res) => {
+      if (res.payload) {
+        message.success("Login Success");
+        navigate("/createUser");
+      } else {
+        message.error("Login Failed");
+      }
+    });
   };
   const loading = useSelector((state) => state.login.loading);
   return (
     <>
-      <img className="wave" src={wave} />
+      <img className="wave" src={wave} alt="..." />
       <div className="container">
         <div className="img-login">
-          <img src={bg} />
+          <img src={bg} alt="..." />
         </div>
         <div className="login-content">
           <Form form={form} className="FormLogin" onFinish={onFinish}>
