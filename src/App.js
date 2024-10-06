@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import CreateUser from "./pages/createUser/CreateUser";
-import Lessons from "./pages/lessons/Lessons";
-import Login from "./pages/login/Login";
-import Reading from "./pages/reading/Reading";
+import React, { useEffect, useState } from "react"
+import { Navigate, Route, Routes } from "react-router-dom"
+import CreateUser from "./pages/createUser/CreateUser"
+import Lessons from "./pages/lessons/Lessons"
+import Login from "./pages/login/Login"
+import Reading from "./pages/reading/Reading"
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
+    if (!token) {
       setIsAuth(true);
     }
   }, []);
